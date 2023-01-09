@@ -1,0 +1,37 @@
+Object Relational Mapper ( ORM )
+
+--> Layer of abstraction between us and the DB
+--> Ability to perform all SQL Operations through Python. No More SQL!
+--> Popular way of interacting with DB ( SQLAlchemy )
+
+
+Traditional :
+
+Fastapi -- SQL --> DB
+
+ORM :
+
+FastAPI  --- Python --> ORM ---Psycopg / SQL ---> DB
+
+ORMs :
+
+Instead of manually Defining tables in Postgres, we can define as Python Models
+
+Queries can be made exclusively through Python Code. No SQL. 
+
+@ DB/ Table Definition & Creation :
+
+Class PupHub(Base):
+__tablename __ = "PupData"
+
+id = Column(Integer, primary_key=True, index=True)
+title = Column(String, index=True, nullable=False)
+content = Column(String, nullable=False)
+published = Column(Boolean)
+
+@ Quering the data from the DB :
+
+db.query(models.PubHub).filter(models.PupHub.id == id).first()
+
+SQLALCHEMY_DATABASE_URL = "postgresql://<username>:<password>@<ip-address/hostname>/<database_name>"
+

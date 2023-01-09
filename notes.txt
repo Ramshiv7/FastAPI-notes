@@ -1,0 +1,114 @@
+# FastAPI
+
+API Development in Python Using FASTAPI Framework 
+
+uvicorn - ASGI ( Asynchoronous Server Gateway Interface )
+pydantic - Data Models for ORM ( Re-verify )
+
+# HTTP Methods 
+
+GET
+POST
+PUT
+DELETE
+
+# Response code 
+
+200 - Successfull 
+201 - Successfully POSTED/ CREATED  the data 
+404 - Not Found 
+
+
+
+# HTTP GET VS POST 
+
+GET : 
+
+client ( GET Req) -------------------> API 
+
+Client <-------------------------------(Data) API
+
+POST : 
+
+client (DATA ) ------------------------------> API 
+
+client <---------------------------------- (DATA) API
+
+
+# Path Operations 
+
+@app -> ( Decorator from FastAPI Class - which make the code as RESTAPI instead of Normal Py Func. )
+
+.get() -> Get is an Http method to retrieve the Information.
+
+.get('/') -> '/' is the Path Operation 
+
+async def home() -> home() is function which gets exectued when the HTTP method is called 
+
+async -> Asynchoronous functionality added to the function 
+
+await -> async & await works only if await is used to wait asynchoronously for other process to complete
+
+
+If both get(/) is same, then fastAPI executes the first Path Operation ( Order Matters )
+
+
+In postman : 
+
+lets say we need to send a post data from postman through Body-> JSON, DATA-> RAW
+
+>> how to i pass the body from postman into python Backend ?
+
+--> use a variable inside py function
+--> capture data inside body -> Body(...) from fastapi.params import Body
+--> Keep the data as dict ( pup_details: dict = Body(...))
+
+
+@ Why we need schema 
+
+* data isn't validated 
+* its pain get all the values from the body 
+* client can empty data / with header( that we don't need )
+* Need to force client to send data in a schema that we expect
+
+-- To SOLVE ABOVE Pydantic library 
+
+___ PYDANTIC ___
+
+Whenever we send something from post into python code, By Default, it will save the data as Pydantic Model
+
+--> print- pydantic mode >>> pup_details (Directly print the variable )
+--> convert Pydantic model into dict >>> pup_details.dict()
+--> All Pydantic Model can be retrieved by db.get()
+
+@CRUD 
+
+C -> Create = Post 
+R -> Read = Get
+U -> Update = Put/ Patch 
+D -> Delete = Delete
+
+put - all field change -> all field has to be sent 
+
+patch - specific field change
+
+@Best Practises 
+
+If i pass an Array to API, it automatically serialise it to JSON 
+
+Proper Structure the API, ( ORDER WISE ) - Make sure path opertions matches the get method
+
+Learn about Import & Packages 
+
+Raise Exceptions wherever required 
+
+Send Proper Status Code
+
+Properly Package the Application 
+
+uvicorn foler_name.file_name:object_in_file --reload
+
+
+
+
+
